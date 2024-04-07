@@ -3,6 +3,9 @@ import {HeaderLayout} from './HeaderLayout';
 import {SiderLayout} from './SiderLayout';
 import {ContentLayout} from './ContentLayout';
 import {useState} from 'react';
+import {Loader} from '../Loader/Loader';
+import rootReducer from '../store/reducers';
+import { useSelector } from 'react-redux';
 
 
 export const AppLayout = () => {
@@ -12,15 +15,21 @@ const layoutStyle = {
     width: '100vw',
     height: '100vh',
 };
-const [showCointPage, setShowCointPage] = useState('home')
+const [showCoinPage, setShowCoinPage] = useState('home');
+
+const loading = useSelector((state: typeof rootReducer) => {
+    //@ts-ignore
+    return state.loader
+});
 
     return (
         <Layout style={layoutStyle}>
-            <HeaderLayout setShowCointPage={setShowCointPage}/>
+            <HeaderLayout setShowCointPage={setShowCoinPage}/>
             <Layout>
-                <SiderLayout setShowCointPage={setShowCointPage}/>
-                <ContentLayout showCointPage={showCointPage}/>
+                <SiderLayout setShowCointPage={setShowCoinPage}/>
+                <ContentLayout showCoinPage={showCoinPage}/>
             </Layout>
+            {loading && <Loader/>}
         </Layout>
     )
 }

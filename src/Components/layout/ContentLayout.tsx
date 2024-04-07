@@ -12,12 +12,12 @@ const contentStyle: React.CSSProperties = {
     backgroundColor: '#fff',
 };
 
-export const ContentLayout = ({showCointPage}: {showCointPage: any}) => {
+export const ContentLayout = ({showCoinPage}: {showCoinPage: any}) => {
     
     return (
         <Content style={contentStyle}>
-            {showCointPage === 'home' ? <HomePage/> :
-                <CointPages cointName={showCointPage}/>
+            {showCoinPage === 'home' ? <HomePage/> :
+                <CointPages coinName={showCoinPage}/>
             }
         </Content>
     )
