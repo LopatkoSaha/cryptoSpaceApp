@@ -1,12 +1,11 @@
-import {useDispatch} from 'react-redux';
-import {setLoading} from '../store/loaderSlice'
+import style from './page.module.css';
+
 
 export const HomePage = () => {
-    const dispatch = useDispatch();
+
     return (
         <>
             <div style={{color: 'black'}}>Home</div>
-            <button onClick={()=>dispatch(setLoading(true))}>load</button>
         </>
     )
 }

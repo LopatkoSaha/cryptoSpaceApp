@@ -20,18 +20,22 @@ export const NavSiderCoins = ({setShowCointPage}: {setShowCointPage: any}) =>{
         //@ts-ignore
         return state.availableCoins
     });
+    const coinsIcon = useSelector((state: typeof rootReducer) => {
+        //@ts-ignore
+        return state.coinsIcon
+    });
 
     return (
         <>
             <div className={style.wrapper}>
             {availableCoins.map((item: string) => {
                 return  (<div className={style.container} key={item}>
-                            <button 
-                                className={`${style.item}`} 
-                                onClick={()=>setShowCointPage(item)}
+                            <div className={style.imgBtnCoin}
+                            onClick={()=>setShowCointPage(item)}
                             >
+                                <img src={coinsIcon[item]}/>
                                 {item}
-                            </button>
+                            </div>
                             { currentCurs 
                                 ? <div className={style.item}>{currentCurs[item]} $</div>
                                 : <div className={style.item}>Loading...</div>

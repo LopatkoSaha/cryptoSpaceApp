@@ -13,14 +13,20 @@
     justify-content: space-between;
     color: black;
     line-height: 1rem;
-}
-button {
-    width: 40%;
-    cursor: pointer;
-    margin-left: 10px;
+    padding: 10px;
 }
 .curse {
     margin-right: 10px;
     font-size: 1.3rem;
-
+}
+.imgBtnCoin {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+.imgBtnCoin img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
 }
