@@ -4,11 +4,12 @@ import{useDispatch} from 'react-redux'
 import {axiosStatisticCurse} from '../../axios/getStatisticCurse';
 import rootReducer from '../store/reducers';
 import { useSelector } from 'react-redux';
+import {ChartCurrency} from '../chartCurrency/ChartCurrency';
 
 const defultReqStatistic = {
-    from: 3600000,
+    from: 3600000*24,
     to: 1000,
-    precision: 'min'
+    precision: 'hour'
 }
 
 export const CointPages = ({coinName}: {coinName: string}) => {
@@ -50,16 +51,8 @@ export const CointPages = ({coinName}: {coinName: string}) => {
                     {coinName}
                 </div>
                 <div className={style.containerChart}>
-                    {statistic ? statistic.map((item)=>{
-                        return(
-                            <div className={style.unitStatistic}
-                                key={item.createdDate}>
-                                curse: {item[coinName]}$
-                                <br/>
-                                {item.createdDate}
-                            </div>
-                        )
-                    })
+                    {statistic && coinName
+                    ? <ChartCurrency data={statistic} coinName={coinName} />
                     : <div>No statistic</div>
                     }
                 </div>
@@ -79,7 +72,7 @@ export const CointPages = ({coinName}: {coinName: string}) => {
                         Week
                     </button>
                     <button className={isActive.month ? style.btnActive : ''}
-                        onClick={()=>{setReqStatistic(prev=>({...prev, from: 3600000*24*30, precision: 'week'}));
+                        onClick={()=>{setReqStatistic(prev=>({...prev, from: 3600000*24*7*4, precision: 'week'}));
                             setIsActive({day: false, week: false, month: true})
                         }}
                     >
