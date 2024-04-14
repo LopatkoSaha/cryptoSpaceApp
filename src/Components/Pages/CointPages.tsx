@@ -33,14 +33,18 @@ export const CointPages = ({coinName}: {coinName: string}) => {
         month: false
     })
 
-    useEffect(()=>{
+    const handlerStatistic = (name: string, data: Record<string, any>) => {
         axiosStatisticCurse(dispatch, {
-            coin: coinName, 
-            from: reqStatistic.from, 
-            to: reqStatistic.to, 
-            precision: reqStatistic.precision
+            coin: name, 
+            from: data.from, 
+            to: data.to, 
+            precision: data.precision
         })
         .then(statistic => setStatistic(statistic.data));
+    }
+
+    useEffect(()=>{
+        handlerStatistic(coinName, reqStatistic);
     },[coinName, reqStatistic]);
 
     return (
@@ -78,6 +82,7 @@ export const CointPages = ({coinName}: {coinName: string}) => {
                     >
                         Month
                     </button>
+                    <button onClick={()=>handlerStatistic(coinName, reqStatistic)}>Refresh</button>
                 </div>
             </div>
         </>
