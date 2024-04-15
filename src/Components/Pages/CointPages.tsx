@@ -5,7 +5,9 @@ import {axiosStatisticCurse} from '../../axios/getStatisticCurse';
 import rootReducer from '../store/reducers';
 import { useSelector } from 'react-redux';
 import {ChartCurrency} from '../chartCurrency/ChartCurrency';
-import { axiosPortfolioUser } from '../../axios/getPortfolioUser'
+import { PortfolioUser } from '../PortfolioUser/PortfolioUser'
+import { axiosPortfolioUser } from '../../axios/getPortfolioUser';
+import { axiosChangePortfolioUser } from '../../axios/setPortfolioUser';
 
 const defultReqStatistic = {
     from: 3600000*24,
@@ -18,6 +20,10 @@ export const CointPages = ({coinName}: {coinName: string}) => {
     const coinsIcons = useSelector((state: typeof rootReducer) => {
         //@ts-ignore
         return state.coinsIcon
+    });
+    const user = useSelector((state: typeof rootReducer) => {
+        //@ts-ignore
+        return state.user
     });
 
     const defultStateStatistic: Record<string, any>[] = [{
@@ -51,41 +57,50 @@ export const CointPages = ({coinName}: {coinName: string}) => {
     return (
         <>
             <div className={style.wrapper}>
-                <div className={style.header}>
-                    <img src={coinsIcons[coinName]}/>
-                    {coinName}
+                <div className={style.wrapperChart}>
+                    <div className={style.header}>
+                        <img src={coinsIcons[coinName]}/>
+                        {coinName}
+                    </div>
+                    <div className={style.containerChart}>
+                        {statistic && coinName
+                        ? <ChartCurrency data={statistic} coinName={coinName} />
+                        : <div>No statistic</div>
+                        }
+                    </div>
+                    <div className={style.containerBtn}>
+                        <button className={isActive.day ? style.btnActive : ''} 
+                            onClick={()=>{setReqStatistic(prev=>({...prev, from: 3600000*24, precision: 'hour'}));
+                                setIsActive({day: true, week: false, month: false})
+                            }}
+                        >
+                            Day
+                        </button>
+                        <button className={isActive.week ? style.btnActive : ''}
+                            onClick={()=>{setReqStatistic(prev=>({...prev, from: 3600000*24*7, precision: 'day'}));
+                                setIsActive({day: false, week: true, month: false})
+                            }}
+                        >
+                            Week
+                        </button>
+                        <button className={isActive.month ? style.btnActive : ''}
+                            onClick={()=>{setReqStatistic(prev=>({...prev, from: 3600000*24*7*4, precision: 'week'}));
+                                setIsActive({day: false, week: false, month: true})
+                            }}
+                        >
+                            Month
+                        </button>
+                        <button onClick={()=>{handlerStatistic(coinName, reqStatistic)}}>Refresh</button>
+                        <button onClick={()=>{ axiosPortfolioUser(dispatch)}}>Update</button>
+                        <button onClick={()=>{ axiosChangePortfolioUser({
+                                buyFrom: 'USD', 
+                                buyTo: 'bitcoin', 
+                                quantity: 1,
+                            }, dispatch); axiosPortfolioUser(dispatch)
+                        }}>Exchange</button>
+                    </div>
                 </div>
-                <div className={style.containerChart}>
-                    {statistic && coinName
-                    ? <ChartCurrency data={statistic} coinName={coinName} />
-                    : <div>No statistic</div>
-                    }
-                </div>
-                <div className={style.containerBtn}>
-                    <button className={isActive.day ? style.btnActive : ''} 
-                        onClick={()=>{setReqStatistic(prev=>({...prev, from: 3600000*24, precision: 'hour'}));
-                            setIsActive({day: true, week: false, month: false})
-                        }}
-                    >
-                        Day
-                    </button>
-                    <button className={isActive.week ? style.btnActive : ''}
-                        onClick={()=>{setReqStatistic(prev=>({...prev, from: 3600000*24*7, precision: 'day'}));
-                            setIsActive({day: false, week: true, month: false})
-                        }}
-                    >
-                        Week
-                    </button>
-                    <button className={isActive.month ? style.btnActive : ''}
-                        onClick={()=>{setReqStatistic(prev=>({...prev, from: 3600000*24*7*4, precision: 'week'}));
-                            setIsActive({day: false, week: false, month: true})
-                        }}
-                    >
-                        Month
-                    </button>
-                    <button onClick={()=>{handlerStatistic(coinName, reqStatistic)}}>Refresh</button>
-                    <button onClick={()=>{ axiosPortfolioUser(dispatch)}}>Update</button>
-                </div>
+                {user.name && <PortfolioUser />}
             </div>
         </>
     )

@@ -1,8 +1,8 @@
 import style from './message.module.css';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import {setMessage} from '../store/messageSlice';
 import rootReducer from '../store/reducers';
+import {setMessage} from '../store/messageSlice';
 
 export const Message = () => {
     const dispatch = useDispatch();

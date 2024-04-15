@@ -1,6 +1,5 @@
 import axios from 'axios';
 import store from '../Components/store/store';
-import { config } from 'process';
 
 // Создание экземпляра Axios с использованием middleware
 const axiosInst = axios.create();
@@ -8,7 +7,7 @@ const axiosInst = axios.create();
 // Добавление middleware для запросов
 axiosInst.interceptors.request.use( function (config) {
     
-    if(config.url === 'http://localhost:4500/auth/login' || config.url ==='http://localhost:4500/portfolioUser'
+    if( config.url ==='http://localhost:4500/portfolioUser'
     ){
         const token = store.getState().user.token;
         config.data = {token};

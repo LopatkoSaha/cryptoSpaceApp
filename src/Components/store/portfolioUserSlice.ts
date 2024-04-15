@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 const initialState: Record<string, any> = {
     USD: '',
-    coins: {}
+    coins: ''
 };
 
 const portfolioUserSlice = createSlice({

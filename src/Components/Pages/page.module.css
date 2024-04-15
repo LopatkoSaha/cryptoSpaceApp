@@ -1,9 +1,14 @@
 .wrapper {
     display: flex;
+    justify-content: space-around;
+    color: black;
+}
+.wrapperChart {
+    display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    width: 100%;
+    width: 60%;
     height: 100%;
     color: black;
 }
@@ -36,7 +41,7 @@
 .containerChart {
     width: 100%;
     height: 60%;
-    overflow: scroll;
+    overflow-y: hidden;
     overflow-x: hidden;
 }
 .unitStatistic {
