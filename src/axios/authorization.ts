@@ -1,7 +1,7 @@
 import { Dispatch } from '@reduxjs/toolkit';
 import axiosInst from './middleware';
-import { setUser } from '../Components/store/userSlice';
 import { setMessage } from '../Components/store/messageSlice';
+import { setUser } from '../Components/store/userSlice';
 
 // Использование экземпляра Axios для отправки запросов
 export const axiosLogin = (login: string, password: string, dispatch: Dispatch) => {

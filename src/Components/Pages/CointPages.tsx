@@ -5,6 +5,7 @@ import {axiosStatisticCurse} from '../../axios/getStatisticCurse';
 import rootReducer from '../store/reducers';
 import { useSelector } from 'react-redux';
 import {ChartCurrency} from '../chartCurrency/ChartCurrency';
+import { axiosPortfolioUser } from '../../axios/getPortfolioUser'
 
 const defultReqStatistic = {
     from: 3600000*24,
@@ -82,7 +83,8 @@ export const CointPages = ({coinName}: {coinName: string}) => {
                     >
                         Month
                     </button>
-                    <button onClick={()=>handlerStatistic(coinName, reqStatistic)}>Refresh</button>
+                    <button onClick={()=>{handlerStatistic(coinName, reqStatistic)}}>Refresh</button>
+                    <button onClick={()=>{ axiosPortfolioUser(dispatch)}}>Update</button>
                 </div>
             </div>
         </>

@@ -4,6 +4,7 @@ import messageReducer from './messageSlice';
 import availableCoinsReducer from './availableCoinsSlice';
 import loaderSlice from './loaderSlice';
 import coinsIconSlice from './coinsIconSlice';
+import portfolioUserSlice from './portfolioUserSlice';
 
 const rootReducer = combineReducers({
     user: userReducer,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
     availableCoins: availableCoinsReducer,
     coinsIcon: coinsIconSlice,
     loader: loaderSlice,
+    portfolio: portfolioUserSlice,
 });
 
 export default rootReducer;

@@ -1,17 +1,17 @@
 import axios from 'axios';
 import store from '../Components/store/store';
+import { config } from 'process';
 
 // Создание экземпляра Axios с использованием middleware
 const axiosInst = axios.create();
 
 // Добавление middleware для запросов
-axiosInst.interceptors.request.use(function (config) {
-    if(config.url === 'http://localhost:4500/auth/login' 
-    // ||
-    //     'http://localhost:4500/actualCoins'
+axiosInst.interceptors.request.use( function (config) {
+    
+    if(config.url === 'http://localhost:4500/auth/login' || config.url ==='http://localhost:4500/portfolioUser'
     ){
         const token = store.getState().user.token;
-        config.data.token = token;
+        config.data = {token};
     }
     return config;
 }, function (error) {
@@ -21,8 +21,6 @@ axiosInst.interceptors.request.use(function (config) {
 
 // Добавление middleware для ответов
 axiosInst.interceptors.response.use(function (response) {
-    // Обработка успешных ответов
-    // console.log('Received response:', response);
     return response;
 }, function (error) {
     // Обработка ошибок
