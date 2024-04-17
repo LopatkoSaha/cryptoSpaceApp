@@ -4,9 +4,9 @@ import { setMessage } from '../Components/store/messageSlice';
 import { setUser } from '../Components/store/userSlice';
 
 // Использование экземпляра Axios для отправки запросов
-export const axiosLogin = (login: string, password: string, dispatch: Dispatch) => {
+export const axiosLogin = (email: string, password: string, dispatch: Dispatch) => {
     axiosInst.post('http://localhost:4500/auth/login', {
-        login,
+        email,
         password,
     })
     .then(response => {
@@ -17,10 +17,10 @@ export const axiosLogin = (login: string, password: string, dispatch: Dispatch) 
     });
 }
 
-export const axiosRegistration = async (name: string, login: string, password: string, dispatch: Dispatch) => {
+export const axiosRegistration = async (name: string, email: string, password: string, dispatch: Dispatch) => {
     await axiosInst.post('http://localhost:4500/auth/registration', {
         name,
-        login,
+        email,
         password,
     })
     .then(response => {

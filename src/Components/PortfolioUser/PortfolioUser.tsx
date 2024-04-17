@@ -27,7 +27,7 @@ export const PortfolioUser = () => {
     return(
         <>
             <div className={style.wrapper}>
-                {portfolio.USD &&
+                {portfolio.coins &&
                     <div className={style.portfolio}>
                         <div className={style.usd}>USD {portfolio.USD} $</div>
                         <div className={style.currency}>

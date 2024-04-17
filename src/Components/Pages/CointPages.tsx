@@ -94,13 +94,13 @@ export const CointPages = ({coinName}: {coinName: string}) => {
                         <button onClick={()=>{ axiosPortfolioUser(dispatch)}}>Update</button>
                         <button onClick={()=>{ axiosChangePortfolioUser({
                                 buyFrom: 'USD', 
-                                buyTo: 'bitcoin', 
+                                buyTo: 'bnb', 
                                 quantity: 1,
                             }, dispatch); axiosPortfolioUser(dispatch)
                         }}>Exchange</button>
                     </div>
                 </div>
-                {user.name && <PortfolioUser />}
+                {user.token && <PortfolioUser />}
             </div>
         </>
     )
