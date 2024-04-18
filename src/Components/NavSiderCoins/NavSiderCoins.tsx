@@ -29,19 +29,21 @@ export const NavSiderCoins = ({setShowCointPage}: {setShowCointPage: any}) =>{
         <>
             <div className={style.wrapper}>
             {availableCoins.map((item: string) => {
-                return  (<div className={style.container} key={item}>
-                            <div className={style.imgBtnCoin}
-                            onClick={()=>setShowCointPage(item)}
-                            >
-                                <img src={coinsIcon[item]}/>
-                                {item}
+                if(item !== 'USD'){
+                    return  (<div className={style.container} key={item}>
+                                <div className={style.imgBtnCoin}
+                                onClick={()=>setShowCointPage(item)}
+                                >
+                                    <img src={coinsIcon[item]}/>
+                                    {item}
+                                </div>
+                                { currentCurs 
+                                    ? <div className={style.item}>{currentCurs[item]} $</div>
+                                    : <div className={style.item}>Loading...</div>
+                                }
                             </div>
-                            { currentCurs 
-                                ? <div className={style.item}>{currentCurs[item]} $</div>
-                                : <div className={style.item}>Loading...</div>
-                            }
-                        </div>
-                )
+                    )
+                }
             })}
             </div>
         </>

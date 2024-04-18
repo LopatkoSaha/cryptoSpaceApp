@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 import store from '../Components/store/store';
 
 // Создание экземпляра Axios с использованием middleware

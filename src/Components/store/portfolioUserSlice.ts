@@ -11,7 +11,6 @@ const portfolioUserSlice = createSlice({
     initialState,
     reducers: {
         setPortfolioUser(state, action: Record<string, any>) {
-
             return action.payload;
         },
     },

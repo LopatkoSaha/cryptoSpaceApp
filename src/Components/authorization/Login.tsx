@@ -27,7 +27,6 @@ export const Login = ({setShowLogin, setShowRegictration}: {setShowRegictration:
                     <div className={style.text}>Login</div>
                     <div>
                         <label htmlFor='login'>
-                        <div style={{fontSize: '0.9rem', color: 'red', marginRight: '5px'}}>*login</div>
                             <input
                                 id='login'
                                 required
@@ -42,7 +41,6 @@ export const Login = ({setShowLogin, setShowRegictration}: {setShowRegictration:
                     </div>
                     <div>
                         <label htmlFor='password'>
-                            <div style={{fontSize: '0.9rem', color: 'red', marginRight: '5px'}}>*password</div>
                             <input
                                 id='password'
                                 required

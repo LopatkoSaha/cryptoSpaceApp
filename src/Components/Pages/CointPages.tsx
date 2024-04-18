@@ -1,13 +1,14 @@
-import style from './page.module.css';
 import {useState, useEffect} from 'react';
-import{useDispatch} from 'react-redux'
-import {axiosStatisticCurse} from '../../axios/getStatisticCurse';
+import { useSelector, useDispatch } from 'react-redux';
+
+import style from './page.module.css';
 import rootReducer from '../store/reducers';
-import { useSelector } from 'react-redux';
+import {axiosStatisticCurse} from '../../axios/getStatisticCurse';
 import {ChartCurrency} from '../chartCurrency/ChartCurrency';
 import { PortfolioUser } from '../PortfolioUser/PortfolioUser'
 import { axiosPortfolioUser } from '../../axios/getPortfolioUser';
 import { axiosChangePortfolioUser } from '../../axios/setPortfolioUser';
+import { Dropdown } from '../Dropdown/Dropdown';
 
 const defultReqStatistic = {
     from: 3600000*24,
@@ -25,6 +26,16 @@ export const CointPages = ({coinName}: {coinName: string}) => {
         //@ts-ignore
         return state.user
     });
+    const availableCoins: string[] = useSelector((state: typeof rootReducer) => {
+        //@ts-ignore
+        return state.availableCoins
+    });
+    
+    const portfolioUser = useSelector((state: typeof rootReducer) => {
+        //@ts-ignore
+        return state.portfolio
+    });
+    const portfolioUserCurrencyName = ['USD'].concat(Object.keys(portfolioUser.coins));
 
     const defultStateStatistic: Record<string, any>[] = [{
         createdDate: "",
@@ -38,7 +49,8 @@ export const CointPages = ({coinName}: {coinName: string}) => {
         day: true,
         week: false,
         month: false
-    })
+    });
+    const [transaction, setTrasaction] = useState({buyFrom: '', buyTo: '', quantity: 0});
 
     const handlerStatistic = (name: string, data: Record<string, any>) => {
         axiosStatisticCurse(dispatch, {
@@ -53,6 +65,11 @@ export const CointPages = ({coinName}: {coinName: string}) => {
     useEffect(()=>{
         handlerStatistic(coinName, reqStatistic);
     },[coinName, reqStatistic]);
+    
+    const handlerExchange = () => {
+        axiosChangePortfolioUser(transaction, dispatch);
+        setTrasaction((prev: any) => ({...prev, quantity: +0}));
+    }
 
     return (
         <>
@@ -91,16 +108,25 @@ export const CointPages = ({coinName}: {coinName: string}) => {
                             Month
                         </button>
                         <button onClick={()=>{handlerStatistic(coinName, reqStatistic)}}>Refresh</button>
-                        <button onClick={()=>{ axiosPortfolioUser(dispatch)}}>Update</button>
-                        <button onClick={()=>{ axiosChangePortfolioUser({
-                                buyFrom: 'USD', 
-                                buyTo: 'bnb', 
-                                quantity: 1,
-                            }, dispatch); axiosPortfolioUser(dispatch)
-                        }}>Exchange</button>
                     </div>
                 </div>
-                {user.token && <PortfolioUser />}
+                {user.token && 
+                    <div className={style.wrapperPortfolio}>
+                        <PortfolioUser />
+                        <div className={style.dropdown}>
+                            <Dropdown options={availableCoins} onSelect={setTrasaction} flag='buyFrom' />
+                            <Dropdown options={portfolioUserCurrencyName} onSelect={setTrasaction} flag='buyTo'/>
+                            <input
+                                placeholder="quantity" 
+                                type="number" 
+                                name="quantity" 
+                                value={transaction.quantity}
+                                onChange={(e) => setTrasaction((prev) => ({...prev, quantity: +e.target.value}))}
+                            />
+                            <button onClick={handlerExchange}>Exchange</button>
+                        </div>
+                    </div>
+                }
             </div>
         </>
     )

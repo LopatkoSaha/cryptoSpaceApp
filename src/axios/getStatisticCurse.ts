@@ -1,7 +1,8 @@
-import axiosInst from './middleware';
 import { Dispatch } from '@reduxjs/toolkit';
+
+import axiosInst from './middleware';
 import { setMessage } from '../Components/store/messageSlice';
-import {setLoading} from '../Components/store/loaderSlice'
+import {setLoading} from '../Components/store/loaderSlice';
 
 type TStatisticCurse = {
     coin: string,
