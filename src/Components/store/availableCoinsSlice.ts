@@ -1,14 +1,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 
-const initialState: string[] = [];
+const initialState: string[] = ['USD'];
 
 const availableCoinsSlice = createSlice({
         name: 'availableCoins',
         initialState,
         reducers: {
             setAvailableCoins(state, action: PayloadAction<string[]>) {
-                return action.payload;
+                return initialState.concat(action.payload);
             },
         },
     });

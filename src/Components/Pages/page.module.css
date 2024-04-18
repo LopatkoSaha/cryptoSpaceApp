@@ -1,9 +1,14 @@
 .wrapper {
     display: flex;
+    justify-content: space-around;
+    color: black;
+}
+.wrapperChart {
+    display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    width: 100%;
+    width: 60%;
     height: 100%;
     color: black;
 }
@@ -14,7 +19,7 @@
     font-size: 3rem;
     font-family: monospace;
     font-weight: 700;
-    z-index: 50;
+    z-index: 10;
     color: black;
 }
 .header img {
@@ -22,8 +27,9 @@
 }
 .containerBtn {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
+    align-self: flex-start;
     width: 50%;
 }
 .containerBtn button {
@@ -35,7 +41,7 @@
 .containerChart {
     width: 100%;
     height: 60%;
-    overflow: scroll;
+    overflow-y: hidden;
     overflow-x: hidden;
 }
 .unitStatistic {

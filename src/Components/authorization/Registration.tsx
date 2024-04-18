@@ -22,7 +22,6 @@ export const Registration = ({setShowRegictration, setShowLogin}: {setShowRegict
                     <div className={style.text}>Registration</div>
                     <div>
                         <label htmlFor='name'>
-                        <div style={{fontSize: '0.9rem', color: 'red', marginRight: '5px'}}>*name</div>
                             <input
                                 id='name'
                                 required
@@ -37,14 +36,13 @@ export const Registration = ({setShowRegictration, setShowLogin}: {setShowRegict
                     </div>
                     <div>
                         <label htmlFor='login'>
-                        <div style={{fontSize: '0.9rem', color: 'red', marginRight: '5px'}}>*login</div>
                             <input
                                 id='login'
                                 required
                                 placeholder="email" 
                                 type="text" 
                                 name="login" 
-                                tabIndex={1} 
+                                tabIndex={2} 
                                 value={login}
                                 onChange={(e) => setLogin(e.target.value)}
                             />
@@ -52,14 +50,13 @@ export const Registration = ({setShowRegictration, setShowLogin}: {setShowRegict
                     </div>
                     <div>
                         <label htmlFor='password'>
-                            <div style={{fontSize: '0.9rem', color: 'red', marginRight: '5px'}}>*password</div>
                             <input
                                 id='password'
                                 required
                                 placeholder="password"
                                 type="password" 
                                 name="password" 
-                                tabIndex={2} 
+                                tabIndex={3} 
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                             />
@@ -69,10 +66,7 @@ export const Registration = ({setShowRegictration, setShowLogin}: {setShowRegict
                 <div className={style.btnSigReg}>
                     <button onClick={async () => {
                         axiosRegistration(name, login, password, dispatch);
-                            // await logIn({userName, password}, dispatch);
-                            // getUserByToken(dispatch); 
                             clearForm(); 
-                            // setIsSignIn(false)
                         }}
                     >
                         Send

@@ -1,5 +1,6 @@
-import axiosInst from './middleware';
 import { Dispatch } from '@reduxjs/toolkit';
+
+import axiosInst from './middleware';
 import { setMessage } from '../Components/store/messageSlice';
 import { setAvailableCoins } from '../Components/store/availableCoinsSlice';
 import {setCoinsIcon} from '../Components/store/coinsIconSlice'
