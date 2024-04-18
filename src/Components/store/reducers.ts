@@ -5,6 +5,7 @@ import availableCoinsReducer from './availableCoinsSlice';
 import loaderSlice from './loaderSlice';
 import coinsIconSlice from './coinsIconSlice';
 import portfolioUserSlice from './portfolioUserSlice';
+import currentCourseSlice from './currentCourseSlice';
 
 const rootReducer = combineReducers({
     user: userReducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
     coinsIcon: coinsIconSlice,
     loader: loaderSlice,
     portfolio: portfolioUserSlice,
+    currentCourse: currentCourseSlice,
 });
 
 export default rootReducer;

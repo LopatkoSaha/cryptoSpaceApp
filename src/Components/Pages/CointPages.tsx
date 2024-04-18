@@ -9,6 +9,7 @@ import { PortfolioUser } from '../PortfolioUser/PortfolioUser'
 import { axiosPortfolioUser } from '../../axios/getPortfolioUser';
 import { axiosChangePortfolioUser } from '../../axios/setPortfolioUser';
 import { Dropdown } from '../Dropdown/Dropdown';
+import { setMessage } from '../store/messageSlice';
 
 const defultReqStatistic = {
     from: 3600000*24,
@@ -35,6 +36,12 @@ export const CointPages = ({coinName}: {coinName: string}) => {
         //@ts-ignore
         return state.portfolio
     });
+
+    const currentCourse = useSelector((state: typeof rootReducer) => {
+        //@ts-ignore
+        return state.currentCourse
+    });
+
     const portfolioUserCurrencyName = ['USD'].concat(Object.keys(portfolioUser.coins));
 
     const defultStateStatistic: Record<string, any>[] = [{
@@ -67,8 +74,21 @@ export const CointPages = ({coinName}: {coinName: string}) => {
     },[coinName, reqStatistic]);
     
     const handlerExchange = () => {
-        axiosChangePortfolioUser(transaction, dispatch);
-        setTrasaction((prev: any) => ({...prev, quantity: +0}));
+        if(transaction.buyFrom === 'USD' && transaction.quantity > portfolioUser.USD) {
+            dispatch(setMessage('You have no USD'))
+            return
+        }
+        if(transaction.buyTo === 'USD' && currentCourse[transaction.buyFrom]*portfolioUser.coins[transaction.buyFrom] < transaction.quantity){
+            dispatch(setMessage(`You have no ${transaction.buyFrom}`))
+            return
+        }
+        if(currentCourse[transaction.buyFrom]*portfolioUser.coins[transaction.buyFrom] < currentCourse[transaction.buyTo]*transaction.quantity){
+            dispatch(setMessage(`You have no ${transaction.buyFrom}`))
+            return
+        }else{
+            axiosChangePortfolioUser(transaction, dispatch);
+            setTrasaction((prev: any) => ({...prev, quantity: +0}));
+        }
     }
 
     return (
@@ -120,6 +140,8 @@ export const CointPages = ({coinName}: {coinName: string}) => {
                                 placeholder="quantity" 
                                 type="number" 
                                 name="quantity" 
+                                min={0}
+                                max={1000}
                                 value={transaction.quantity}
                                 onChange={(e) => setTrasaction((prev) => ({...prev, quantity: +e.target.value}))}
                             />
