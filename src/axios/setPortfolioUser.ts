@@ -6,13 +6,13 @@ import store from '../Components/store/store';
 import { axiosPortfolioUser } from './getPortfolioUser'
 
 export const axiosChangePortfolioUser = (data: Record<string, any>, dispatch: Dispatch) => {
-    axiosInst.post('http://localhost:4500/buyCurrency', {
+    axiosInst.post('http://localhost:4500/buyCurrency', 
+    {
         buyFrom: data.buyFrom, 
         buyTo: data.buyTo, 
         quantity: data.quantity,
-        token: store.getState().user.token,
-
-    })
+    }
+    )
     .then(response => {
         dispatch(setMessage(response.data));
         axiosPortfolioUser(dispatch);
