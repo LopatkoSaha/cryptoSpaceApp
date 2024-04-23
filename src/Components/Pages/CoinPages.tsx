@@ -7,7 +7,7 @@ import {axiosStatisticCurse} from '../../axios/getStatisticCurse';
 import {ChartCurrency} from '../chartCurrency/ChartCurrency';
 import { PortfolioUser } from '../PortfolioUser/PortfolioUser'
 import { axiosPortfolioUser } from '../../axios/getPortfolioUser';
-import { axiosChangePortfolioUser } from '../../axios/setPortfolioUser';
+import { axiosChangePortfolioUser, axiosBuyAllIn } from '../../axios/setPortfolioUser';
 import { Dropdown } from '../Dropdown/Dropdown';
 import { setMessage } from '../store/messageSlice';
 
@@ -73,16 +73,8 @@ export const CointPages = ({coinName}: {coinName: string}) => {
     },[coinName, reqStatistic]);
     
     const handlerExchange = () => {
-        if(transaction.buyFrom === 'USD' && transaction.quantity > portfolioUser.USD) {
-            dispatch(setMessage('You have no USD'))
-            return
-        }
-        if(transaction.buyTo === 'USD' && currentCourse[transaction.buyFrom]*portfolioUser.coins[transaction.buyFrom] < transaction.quantity){
-            dispatch(setMessage(`You have no ${transaction.buyFrom}`))
-            return
-        }
         if(currentCourse[transaction.buyFrom]*portfolioUser.coins[transaction.buyFrom] < currentCourse[transaction.buyTo]*transaction.quantity){
-            dispatch(setMessage(`You have no ${transaction.buyFrom}`))
+            dispatch(setMessage(`You did not have a ${transaction.buyFrom}`))
             return
         }else{
             axiosChangePortfolioUser(transaction, dispatch);
@@ -145,6 +137,10 @@ export const CointPages = ({coinName}: {coinName: string}) => {
                                 onChange={(e) => setTrasaction((prev) => ({...prev, quantity: +e.target.value}))}
                             />
                             <button onClick={handlerExchange}>Exchange</button>
+                            <button onClick={()=>{
+                                axiosBuyAllIn({buyFrom: transaction.buyFrom, buyTo: transaction.buyTo}, dispatch);
+                                setTrasaction((prev: any) => ({...prev}))
+                                }}>Buy all in</button>
                         </div>
                     </div>
                 }
