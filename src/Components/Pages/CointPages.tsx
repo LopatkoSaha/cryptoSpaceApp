@@ -42,7 +42,6 @@ export const CointPages = ({coinName}: {coinName: string}) => {
         return state.currentCourse
     });
 
-    const portfolioUserCurrencyName = ['USD'].concat(Object.keys(portfolioUser.coins));
 
     const defultStateStatistic: Record<string, any>[] = [{
         createdDate: "",
@@ -135,7 +134,7 @@ export const CointPages = ({coinName}: {coinName: string}) => {
                         <PortfolioUser />
                         <div className={style.dropdown}>
                             <Dropdown options={availableCoins} onSelect={setTrasaction} flag='buyFrom' />
-                            <Dropdown options={portfolioUserCurrencyName} onSelect={setTrasaction} flag='buyTo'/>
+                            <Dropdown options={Object.keys(portfolioUser.coins)} onSelect={setTrasaction} flag='buyTo'/>
                             <input
                                 placeholder="quantity" 
                                 type="number" 

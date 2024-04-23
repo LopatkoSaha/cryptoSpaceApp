@@ -10,7 +10,7 @@ export const ExchangeCryptoWS = ( setCurrentCurse: any) => {
     },[])
 
     const subscribe = () => {
-        const socket = new WebSocket('ws://localhost:4500/connectWS');
+        const socket = new WebSocket('ws://localhost:8008/connectWS');
 
         socket.addEventListener('open', function (event) {
             setWs(socket);

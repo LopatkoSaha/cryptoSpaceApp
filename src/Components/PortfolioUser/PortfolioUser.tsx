@@ -25,24 +25,29 @@ export const PortfolioUser = () => {
     const coinsNames = Object.keys(portfolio.coins);
     
     const totalCost = coinsNames.reduce((acc, item)=>{
+        if(item === 'USD') {
+            return acc
+        }else{
         return acc + portfolio.coins[item] * currentCourse[item]
-    },portfolio.USD);
+        }
+    },portfolio.coins.USD);
 
     return(
         <>
             <div className={style.wrapper}>
                 {portfolio.coins &&
                     <div className={style.portfolio}>
-                        <div className={style.usd}>USD {portfolio.USD}$</div>
+                        <div className={style.usd}>USD {portfolio.coins.USD}$</div>
                         <div className={style.currency}>
                             {coinsNames.map((item: string)=>{
+                                if(item === 'USD') {return}
                                     return <div key={item}>
                                                 {item}  {portfolio.coins[item].toFixed(2)}
                                             </div>
                                 })
                             }
                         </div>
-                        <div>Total  {totalCost}$</div>
+                        <div>Total  {totalCost.toFixed(2)}$</div>
                     </div>
             }
             </div>

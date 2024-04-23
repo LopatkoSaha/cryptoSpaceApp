@@ -20,9 +20,9 @@ export const Authorization = () => {
 
     return(
         <>
-            {user.name ?
+            {user.token ?
                 <div>
-                    <div>{user.name}</div>
+                    <div>{user.name ? user.name : 'User'}</div>
                     <button onClick={()=>dispatch(setUser({token: '', name: ''}))}>Exit</button>
                 </div>
             :
