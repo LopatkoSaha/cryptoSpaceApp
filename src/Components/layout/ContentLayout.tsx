@@ -1,5 +1,5 @@
 import { Layout } from 'antd';
-import {CointPages} from '../Pages/CointPages';
+import {CointPages} from '../Pages/CoinPages';
 import {HomePage} from '../Pages/HomePage';
 
 const { Content } = Layout;

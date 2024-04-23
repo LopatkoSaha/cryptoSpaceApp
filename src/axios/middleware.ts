@@ -8,7 +8,10 @@ const axiosInst = axios.create();
 // Добавление middleware для запросов
 axiosInst.interceptors.request.use( function (config) {
     
-    if( config.url ==='http://localhost:4500/portfolio' || config.url ==='http://localhost:4500/buyCurrency/buy'){
+    if( config.url === 'http://localhost:4500/portfolio' 
+    || config.url === 'http://localhost:4500/buyCurrency/buy'
+    || config.url === 'http://localhost:4500/buyCurrency/buyAllIn'
+    ){
         const token = store.getState().user.token;
         config.headers.token = token;
     }
