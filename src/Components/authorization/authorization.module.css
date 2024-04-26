@@ -13,3 +13,13 @@
 .text {
     color: black;
 }
+.userName {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: black;
+}
+.user button {
+    padding: 5% 15%;
+    border-radius: 10%;
+    margin: 10px;
+}

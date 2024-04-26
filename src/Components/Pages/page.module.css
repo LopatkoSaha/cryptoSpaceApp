@@ -12,9 +12,9 @@
     height: 100%;
     color: black;
 }
-.header {
+.headerCoinPage {
     display: flex;
-    justify-content: center;
+    justify-content:space-around;
     align-items: center;
     font-size: 3rem;
     font-family: monospace;
@@ -22,8 +22,46 @@
     z-index: 10;
     color: black;
 }
-.header img {
+.nameCoin {
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    margin: 0 10%;
+}
+.headerCoinPage img {
     margin-right: 10%;
+}
+.posChangeCourse {
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    color: rgb(52, 240, 52);
+    font-size: 1em;
+    font-weight: 500;
+    :before {
+        content: '\2924';
+        color: rgb(52, 240, 52);
+        font-size: 0.8em;
+    }
+    :after {
+        content: '%';
+    }
+}
+.negChangeCourse {
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    color: red;
+    font-size: 1em;
+    font-weight: 500;
+    :before {
+        content: '\2925';
+        color: red;
+        font-size: 0.8em;
+    }
+    :after {
+        content: '%';
+    }
 }
 .containerBtn {
     display: flex;

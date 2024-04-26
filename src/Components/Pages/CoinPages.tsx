@@ -58,6 +58,8 @@ export const CointPages = ({coinName}: {coinName: string}) => {
     });
     const [transaction, setTrasaction] = useState({buyFrom: '', buyTo: '', quantity: 0});
 
+    const showChangeCourse = 100*(statistic[statistic.length-1][coinName] - statistic[0][coinName]) / statistic[0][coinName];
+
     const handlerStatistic = (name: string, data: Record<string, any>) => {
         axiosStatisticCurse(dispatch, {
             coin: name, 
@@ -86,9 +88,14 @@ export const CointPages = ({coinName}: {coinName: string}) => {
         <>
             <div className={style.wrapper}>
                 <div className={style.wrapperChart}>
-                    <div className={style.header}>
-                        <img src={coinsIcons[coinName]}/>
-                        {coinName}
+                    <div className={style.headerCoinPage}>
+                        <div className={style.nameCoin}>
+                            <img src={coinsIcons[coinName]}/>
+                            {coinName}
+                        </div>
+                        { !Number.isNaN(showChangeCourse) &&
+                        <div className={showChangeCourse > 0 ? style.posChangeCourse : style.negChangeCourse}><div>{Math.abs(+showChangeCourse.toFixed(2))}</div></div>
+                        }
                     </div>
                     <div className={style.containerChart}>
                         {statistic && coinName

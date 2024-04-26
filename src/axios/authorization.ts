@@ -14,7 +14,7 @@ export const axiosLogin = (email: string, password: string, dispatch: Dispatch) 
         dispatch(setUser({token: response.data.token, name: response.data.name}));
     })
     .catch(error => {
-        dispatch(setMessage(error.message));
+        dispatch(setMessage(error.errName));
     });
 }
 
@@ -28,6 +28,6 @@ export const axiosRegistration = async (name: string, email: string, password: s
         dispatch(setMessage( `User ${name} is created`));
     })
     .catch(error => {
-        dispatch(setMessage( error.message ));
+        dispatch(setMessage( error.errName ));
     });
 }

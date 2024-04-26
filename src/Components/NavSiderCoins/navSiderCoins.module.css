@@ -26,6 +26,9 @@
     cursor: pointer;
 }
 .imgBtnCoin img {
+    border-radius: 50%;
+}
+.imgBtnCoin img {
     width: 30px;
     height: 30px;
     margin-right: 10px;
