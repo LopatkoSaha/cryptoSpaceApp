@@ -132,8 +132,8 @@ export const CointPages = ({coinName}: {coinName: string}) => {
                     <div className={style.wrapperPortfolio}>
                         <PortfolioUser />
                         <div className={style.dropdown}>
-                            <Dropdown options={availableCoins} onSelect={setTrasaction} flag='buyFrom' />
-                            <Dropdown options={Object.keys(portfolioUser.coins)} onSelect={setTrasaction} flag='buyTo'/>
+                            <Dropdown options={Object.keys(portfolioUser.coins)} onSelect={setTrasaction} flag='buyFrom' />
+                            <Dropdown options={availableCoins} onSelect={setTrasaction} flag='buyTo'/>
                             <input
                                 placeholder="quantity" 
                                 type="number" 

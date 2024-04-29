@@ -13,7 +13,7 @@ export const axiosChangePortfolioUser = (data: Record<string, any>, dispatch: Di
     }
     )
     .then(response => {
-        dispatch(setMessage(response.data));
+        dispatch(setMessage(response.data.message));
         axiosPortfolioUser(dispatch);
     })
     .catch(error => {
