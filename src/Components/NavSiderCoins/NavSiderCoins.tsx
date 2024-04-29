@@ -36,7 +36,7 @@ export const NavSiderCoins = ({setShowCointPage}: {setShowCointPage: any}) =>{
 
     return (
         <>
-            <div className={style.wrapper}>
+            <div className={style.wrapperNawSider}>
             {availableCoins.map((item: string) => {
                 if(item !== 'USD'){
                     return  (<div className={style.container} key={item}>

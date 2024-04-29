@@ -1,28 +1,27 @@
-import style from './layout.module.css';
 import { Layout } from 'antd';
+import { useSelector } from 'react-redux';
+
+import style from './layout.module.css';
+import rootReducer from '../store/reducers';
+import { Theme } from '../Theme/Theme'
 import {Authorization} from '../authorization/Authorization';
 
-const headerStyle: React.CSSProperties = {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    textAlign: 'center',
-    color: '#fff',
-    height: 100,
-    paddingInline: 48,
-    lineHeight: '64px',
-    backgroundColor: '#4096ff',
-};
+
 
 const { Header } = Layout;
 
 export const HeaderLayout = ({setShowCointPage}: {setShowCointPage: any}) => {
+    const theme = useSelector((state: typeof rootReducer) => {
+        //@ts-ignore
+        return state.theme
+    });
     return (
-        <Header style={headerStyle}>
+        <Header className={theme ==='light' ? style.headerStyleLight : style.headerStyleDark}>
             <div className={style.headerName}
                 onClick={()=>setShowCointPage('home')}
             >Cripto Space</div>
-            <Authorization/>
+            <Authorization />
+            <Theme />
         </Header>
     )
 }

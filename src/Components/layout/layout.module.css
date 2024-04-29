@@ -1,3 +1,25 @@
+.headerStyleLight {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    color: black;
+    height: 100px;
+    padding-inline: 48px;
+    line-height: 64px;
+    background-color: #4096ff;
+}
+.headerStyleDark {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    height: 100px;
+    padding-inline: 48px;
+    line-height: 64px;
+    background-color: #46484b;
+}
 .headerName {
     cursor: pointer;
     text-align:center;
@@ -33,4 +55,18 @@
     -9px 9px 0px #56818e,
     -10px 10px 0px #4c7683,
     -15px 15px 25px rgba(0,0,0,.9);
+}
+.siderStyleLight {
+    text-align: center;
+    line-height: 100px;
+    width: 20%;
+    color: black;
+    background-color: #4096ff !important;
+}
+.siderStyleDark {
+    text-align: center;
+    line-height: 100px;
+    width: 20%;
+    color: #fff;
+    background-color: #46484b !important;
 }

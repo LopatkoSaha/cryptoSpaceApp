@@ -28,5 +28,6 @@
 .btn {
     position: absolute;
     top: 85%;
-    margin: 10px;
+    margin-bottom: 20px;
+    padding: 10px 20px;
 }

@@ -11,5 +11,19 @@
     height: 10vh;
 }
 .text {
-    color: black;
+    color: #fff;
+}
+.userName {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #fff;
+}
+.user button {
+    padding: 5% 15%;
+    border-radius: 10%;
+    margin: 10px;
+    cursor: pointer;
+}
+.iconlogin {
+    cursor: pointer;
 }

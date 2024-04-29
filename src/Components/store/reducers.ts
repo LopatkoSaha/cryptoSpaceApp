@@ -1,4 +1,5 @@
 import { combineReducers } from '@reduxjs/toolkit';
+
 import userReducer from './userSlice';
 import messageReducer from './messageSlice';
 import availableCoinsReducer from './availableCoinsSlice';
@@ -6,6 +7,7 @@ import loaderSlice from './loaderSlice';
 import coinsIconSlice from './coinsIconSlice';
 import portfolioUserSlice from './portfolioUserSlice';
 import currentCourseSlice from './currentCourseSlice';
+import themeSlice from './themeSlice';
 
 const rootReducer = combineReducers({
     user: userReducer,
@@ -15,6 +17,7 @@ const rootReducer = combineReducers({
     loader: loaderSlice,
     portfolio: portfolioUserSlice,
     currentCourse: currentCourseSlice,
+    theme: themeSlice,
 });
 
 export default rootReducer;
