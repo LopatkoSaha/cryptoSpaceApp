@@ -56,6 +56,12 @@ export const CointPages = ({coinName}: {coinName: string}) => {
         week: false,
         month: false
     });
+    let active = '';
+    for (const item in isActive){
+        if(isActive[item as keyof typeof isActive]) {
+            active = item;
+        }
+    }
     const [transaction, setTrasaction] = useState({buyFrom: '', buyTo: '', quantity: 0});
 
     const showChangeCourse = 100*(statistic[statistic.length-1][coinName] - statistic[0][coinName]) / statistic[0][coinName];
@@ -93,9 +99,13 @@ export const CointPages = ({coinName}: {coinName: string}) => {
                             <img src={coinsIcons[coinName]}/>
                             {coinName}
                         </div>
+                    </div>
+                    <div className={style.courseDinamic}>
+                        <div className={style.course}>$ {`${currentCourse[coinName]}`}</div>
                         { !Number.isNaN(showChangeCourse) &&
-                        <div className={showChangeCourse > 0 ? style.posChangeCourse : style.negChangeCourse}><div>{Math.abs(+showChangeCourse.toFixed(2))}</div></div>
+                            <div className={showChangeCourse > 0 ? style.posChangeCourse : style.negChangeCourse}><div>{Math.abs(+showChangeCourse.toFixed(2))}</div></div>
                         }
+                        <div className={style.time}>1 {`${active}`}</div>
                     </div>
                     <div className={style.containerChart}>
                         {statistic && coinName
