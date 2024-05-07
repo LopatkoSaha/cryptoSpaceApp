@@ -23,11 +23,7 @@ export const PortfolioUser = () => {
     };
     const portfolio = useSelector(selectPortfolio);
     const coinsNames = Object.keys(portfolio.coins);
-    console.log('portfolio:', portfolio);
-    console.log('currentCourse:', currentCourse);
-    
-    
-    
+
     const totalCost = coinsNames.reduce((acc, item)=>{
         if(item === 'USD') {
             return acc
@@ -35,6 +31,7 @@ export const PortfolioUser = () => {
         return acc + portfolio.coins[item] * currentCourse[item]
         }
     },portfolio.coins.USD);
+    
 
     return(
         <>

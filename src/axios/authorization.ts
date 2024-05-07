@@ -11,7 +11,13 @@ export const axiosLogin = (email: string, password: string, dispatch: Dispatch) 
         password,
     })
     .then(response => {
-        dispatch(setUser({token: response.data.token, name: response.data.name}));
+        if(response.data.message){
+            dispatch(setMessage(response.data.message))
+        }else{
+            console.log(response.data);
+            
+            dispatch(setUser({token: response.data.token, name: response.data.name}));
+        }
     })
     .catch(error => {
         dispatch(setMessage(error.errName));
