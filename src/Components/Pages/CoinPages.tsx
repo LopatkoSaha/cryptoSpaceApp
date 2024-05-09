@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import style from './page.module.css';
+import style from './coinPage.module.css';
 import rootReducer from '../store/reducers';
 import {axiosStatisticCurse} from '../../axios/getStatisticCurse';
 import {ChartCurrency} from '../chartCurrency/ChartCurrency';
@@ -105,7 +105,7 @@ export const CointPages = ({coinName}: {coinName: string}) => {
                         { !Number.isNaN(showChangeCourse) &&
                             <div className={showChangeCourse > 0 ? style.posChangeCourse : style.negChangeCourse}><div>{Math.abs(+showChangeCourse.toFixed(2))}</div></div>
                         }
-                        <div className={style.time}>1 {`${active}`}</div>
+                        <div className={style.time}>1 {active}</div>
                     </div>
                     <div className={style.containerChart}>
                         {statistic && coinName

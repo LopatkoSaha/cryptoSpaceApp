@@ -7,6 +7,8 @@
     border-radius: 10%;
     background-color: #fff;
     cursor: pointer;
+    transition: background-color 1.5s;
+    transition: border 1.5s;
 }
 .containerSwitchDark {
     display: flex;
@@ -15,8 +17,13 @@
     height: 20px;
     border: 1px solid white;
     border-radius: 10%;
-    background-color: #6d6a6a;
+    background-color: #fff;
     cursor: pointer;
+    transition: background-color 1.5s;
+    transition: border 1.5s;
+}
+.containerSwitchDark:hover {
+
 }
 .switchLight {
     width: 50%;
